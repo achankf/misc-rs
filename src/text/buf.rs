@@ -62,15 +62,15 @@ impl Buf2 {
         where T: ToString
     {
         let (crow, ccol) = self.cloc();
-        self.write_at(o, crow, ccol);
+        self.write_at(crow, ccol, o);
     }
 
     /// Write the object as a string, to the next position.
-    pub fn write_at<T>(&mut self, o: &T, crow: usize, ccol: usize)
+    pub fn write_at<T>(&mut self, crow: usize, ccol: usize, o: &T)
         where T: ToString
     {
         self.mv(crow, ccol);
-        self.write_str_at(&o.to_string(), crow, ccol);
+        self.write_str_at(crow, ccol, &o.to_string());
     }
 
     /// Write the buffer at a specific location.
@@ -109,11 +109,11 @@ impl Buf2 {
     /// Write a string, relative to the cursor.
     pub fn write_str(&mut self, s: &str) {
         let (crow, ccol) = self.cloc();
-        self.write_str_at(s, crow, ccol);
+        self.write_str_at(crow, ccol, s);
     }
 
     /// Write a string at the specified location.
-    pub fn write_str_at(&mut self, s: &str, crow: usize, ccol: usize) {
+    pub fn write_str_at(&mut self, crow: usize, ccol: usize, s: &str) {
         self.mv(crow, ccol);
         for c in s.chars() {
             self.put(c);
