@@ -1,5 +1,6 @@
 use super::{Countable, Counter, IdMap, IndexedBag};
-use adt::idmap::{Iter as IdMapIter, IterMut as IdMapIterMut, Keys as IdMapKeys, Values as IdMapValues};
+use adt::idmap::{Iter as IdMapIter, IterMut as IdMapIterMut, Keys as IdMapKeys,
+                 Values as IdMapValues};
 use std::{cmp, fmt, hash};
 
 pub type Iter<'a, IdT, T> = IdMapIter<'a, IdT, T>;
